@@ -3,7 +3,7 @@
 
 #include "noncopyable.h"
 #include "Thread.h"
-#include "../logger/Logging.h"
+#include "Logging.h"
 
 #include <deque>
 #include <vector>

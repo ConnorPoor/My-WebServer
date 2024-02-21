@@ -1,4 +1,5 @@
-#include "../../include/base/ThreadPool.h"
+#include "ThreadPool.h"
+
 #include <iostream>
 
 ThreadPool::ThreadPool(const std::string& name) :

@@ -1,24 +1,21 @@
-#include "../../include/base/ThreadPool.h"
+#include "ThreadPool.h"
+#include "CurrentThread.h"
+
 #include <iostream>
 #include <stdio.h>
 
-#include "../../include/base/CurrentThread.h"
-
 using namespace std;
 
-void print()
-{
+void print() {
     printf("tid=%d\n", CurrentThread::tid());
 }
 
-void printString(const std::string& str)
-{
+void printString(const std::string& str) {
     cout << str;
 }
 
-void test(int maxSize)
-{
-    cout << "Test ThreadPool with max queue size = " << maxSize;
+void test(int maxSize) {
+    cout << "Test ThreadPool with max queue size = " << maxSize << '\n';
     ThreadPool pool("MainThreadPool");
     pool.setThreadSize(maxSize);
     pool.start();
@@ -31,14 +28,13 @@ void test(int maxSize)
         snprintf(buf, sizeof(buf), "task %d", i);
         pool.add(std::bind(printString, std::string(buf))); // 演示了如何向线程池加入含参的可调用对象
     }
-    cout << "Done" << endl;
+    cout << "Done\n" << endl;
     
     // 演示了如何等待线程池运行完用户任务
     pool.stop();
 }
 
-int main()
-{
+int main() {
     test(0);
     test(1);
     test(5);

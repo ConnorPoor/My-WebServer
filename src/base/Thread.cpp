@@ -1,6 +1,7 @@
+#include "Thread.h"
+#include "CurrentThread.h"
+
 #include <semaphore.h>
-#include "../../include/base/Thread.h"
-#include "../../include/base/CurrentThread.h"
 
 // 初始化线程索引为0
 std::atomic_int32_t Thread::numCreated_(0);
