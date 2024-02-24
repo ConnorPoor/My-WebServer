@@ -34,7 +34,7 @@ void test(int maxSize) {
     pool.stop();
 }
 
-int main() {
+int ThreadPool_test() {
     test(0);
     test(1);
     test(5);
