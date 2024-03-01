@@ -108,6 +108,8 @@ const char* getErrnoMsg(int savedErrno);
  * 当日志等级小于对应等级才会输出
  * 比如设置等级为FATAL，则logLevel等级大于DEBUG和INFO，DEBUG和INFO等级的日志就不会输出
  */
+#define LOG_TRACE if (logLevel() <= Logger::TRACE) \
+  Logger(__FILE__, __LINE__, Logger::TRACE, __func__).stream()
 #define LOG_DEBUG if (logLevel() <= Logger::DEBUG) \
   Logger(__FILE__, __LINE__, Logger::DEBUG, __func__).stream()
 #define LOG_INFO if (logLevel() <= Logger::INFO) \
@@ -115,6 +117,5 @@ const char* getErrnoMsg(int savedErrno);
 #define LOG_WARN Logger(__FILE__, __LINE__, Logger::WARN).stream()
 #define LOG_ERROR Logger(__FILE__, __LINE__, Logger::ERROR).stream()
 #define LOG_FATAL Logger(__FILE__, __LINE__, Logger::FATAL).stream()
-
 
 #endif // LOGGING_H
