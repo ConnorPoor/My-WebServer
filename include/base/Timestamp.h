@@ -57,8 +57,7 @@ inline bool operator==(Timestamp lhs, Timestamp rhs) {
 }
 
 // 计算2个时间戳差值，精确到1usec，用小数表示，而整数部分表示1sec；
-inline double timeDifference(Timestamp high, Timestamp low)
-{
+inline double timeDifference(Timestamp high, Timestamp low) {
     int64_t diff = high.microSecondsSinceEpoch() - low.microSecondsSinceEpoch();
     return static_cast<double>(diff) / Timestamp::kMicroSecondsPerSecond;
 }

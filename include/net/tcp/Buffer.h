@@ -97,6 +97,8 @@ public:
         std::copy(data, data + len, beginWrite());
         writerIndex_ += len;
     }
+
+    // 返回写入的位置
     char *beginWrite() { return begin() + writerIndex_; }
     const char *beginWrite() const { return begin() + writerIndex_; }
 

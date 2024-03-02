@@ -52,8 +52,7 @@ Logger::Impl::Impl(Logger::LogLevel level, int savedErrno, const char* file, int
       stream_(),
       level_(level),
       line_(line),
-      basename_(file)
-{
+      basename_(file) {
     // 输出流 -> time
     formatTime();
     // 写入日志等级

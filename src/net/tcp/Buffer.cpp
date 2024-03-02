@@ -4,9 +4,6 @@
 #include <sys/uio.h>
 #include <unistd.h>
 
-
-
-
 /**
  * @description: 从socket读到缓冲区的方法是使用readv先读至buffer_，
  * buffer_空间如果不够会读入到栈上65536个字节大小的空间，然后以append的
