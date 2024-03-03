@@ -2,18 +2,18 @@
 #include "EventLoop.h"
 #include "CurrentThread.h"
 
-void print(EventLoop* p = NULL) {
+void print_b(EventLoop* p = NULL) {
     printf("print: pid=%d, tid=%d, loop=%p\n",
            getpid(), CurrentThread::tid(), p);
 }
 
 void quit(EventLoop* p) {
-    print(p);
+    print_b(p);
     p->quit();
 }
 
 int EventLoopThread_test() {
-    print();
+    print_b();
 
     {
         EventLoopThread thr1; // never start
@@ -23,7 +23,7 @@ int EventLoopThread_test() {
         // dtor calls quit()
         EventLoopThread thr2;
         EventLoop* loop = thr2.startLoop();
-        loop->runInLoop(std::bind(print, loop));
+        loop->runInLoop(std::bind(print_b, loop));
         CurrentThread::sleepUsec(500 * 1000);
     }
 

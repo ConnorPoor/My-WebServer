@@ -1,4 +1,3 @@
-// EventLoopThreadPool_unittest.cpp
 #include "EventLoop.h"
 #include "EventLoopThreadPool.h"
 

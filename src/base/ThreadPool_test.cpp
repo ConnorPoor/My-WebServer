@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void print() {
+void print_a() {
     printf("tid=%d\n", CurrentThread::tid());
 }
 
@@ -21,8 +21,8 @@ void test(int maxSize) {
     pool.start();
 
     cout << "Adding\n";
-    pool.add(print);
-    pool.add(print);
+    pool.add(print_a);
+    pool.add(print_a);
     for (int i = 0; i < 100; ++i) {
         char buf[32];
         snprintf(buf, sizeof(buf), "task %d", i);

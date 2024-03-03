@@ -1,5 +1,3 @@
-#include "ThreadPool.h"
-#include "Timestamp.h"
 
 int ThreadPool_test();
 int Timestamp_test();
@@ -13,8 +11,8 @@ int main(int argc, char* argv[]) {
     // Timestamp_test();
     // Logger_test(argc, argv);
     // InetAddress_test();
-    EventLoopThreadPool_test();
     // EventLoopThreadPool_test();
+    EventLoopThread_test();
 
     return 0;
 }
