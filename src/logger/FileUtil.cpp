@@ -37,6 +37,7 @@ void FileUtil::flush() {
     ::fflush(fp_);
 }
 
+// 写入文件的接口，在外部函数调用append()的时候，被自动调用
 size_t FileUtil::write(const char* data, size_t len) {
     /**
      * size_t fwrite(const void* buffer, size_t size, size_t count, FILE* stream);

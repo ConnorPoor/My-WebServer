@@ -30,8 +30,8 @@ private:
     Thread thread_;
     std::mutex mutex_;
     std::condition_variable cond_;
+    // 线程初始化回调函数
     ThreadInitCallback callback_;
-
 };
 
 #endif // EVENT_LOOP_THREAD_H

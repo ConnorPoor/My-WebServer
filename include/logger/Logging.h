@@ -93,7 +93,7 @@ private:
     Impl impl_;
 };
 
-// 日志级别
+// 日志级别 初始化定义在Logging.cpp中
 extern Logger::LogLevel g_logLevel;
 
 // 返回日志级别

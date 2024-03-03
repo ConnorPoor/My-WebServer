@@ -20,7 +20,7 @@ public:
     off_t writtenBytes() const { return writtenBytes_; }
 
 private:    
-    // 写数据到文件
+    // 写数据到文件，由append()函数调用
     size_t write(const char* data, size_t len);
 
     FILE* fp_;                  // 文件指针

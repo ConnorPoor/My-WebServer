@@ -91,7 +91,7 @@ private:
 
     // 因为 channel 通道里面能够获知fd最终发生的具体的事件revents
     // 保存事件到来时的回调函数
-    ReadEventCallback readCallback_; // Channel::readCallback = TcpConnection::handleRead -> TcpServer::messageCallback = 用户传入
+    ReadEventCallback readCallback_; // Channel::readCallback = TcpConnection::handleRead -> TcpServer::messageCallback = 用户传入  ||  在主线程中，Acceptor的监听Channel::readCallback = Acceptor::handleRead -> TcpServer::newConnection
     EventCallback writeCallback_;    // Channel::writeCallback = TcpConnection::handleWrite -> TcpServer::writeCallback = 用户传入
     EventCallback closeCallback_;    // Channel::writeCallback = TcpConnection::handleClose -> TcpServer::connectionCallback = 用户传入, TcpServer::removeConnection
     EventCallback errorCallback_;    // Channel::werrorCallback = TcpConnection::handleError

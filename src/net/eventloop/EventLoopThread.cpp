@@ -9,32 +9,28 @@ EventLoopThread::EventLoopThread(const ThreadInitCallback &cb,
     , mutex_()
     , cond_()
     , callback_(cb) // 传入的线程初始化回调函数，用户自定义的
-{
-}
+{}
 
-EventLoopThread::~EventLoopThread()
-{
+EventLoopThread::~EventLoopThread() {
     exiting_ = true;
-    if (loop_ != nullptr)
-    {
+    if (loop_ != nullptr) {
         loop_->quit();
         thread_.join();
     }
 }
 
 
-EventLoop* EventLoopThread::startLoop()
-{
+EventLoop* EventLoopThread::startLoop() {
     // 启动一个新线程。在构造函数中，thread_已经绑定了回调函数threadFunc
     // 此时，子线程开始执行threadFunc函数
     thread_.start();
 
     EventLoop *loop = nullptr;
+
     {
-        // 等待新线程执行创建EventLoop完毕，所以使用cond_.wait
+        // 等待子线程执行创建EventLoop完毕，所以使用cond_.wait
         std::unique_lock<std::mutex> lock(mutex_);
-        while (loop_ == nullptr)
-        {
+        while (loop_ == nullptr) {
             cond_.wait(lock);
         }
         loop = loop_;
@@ -42,13 +38,13 @@ EventLoop* EventLoopThread::startLoop()
     return loop;
 }
 
-void EventLoopThread::threadFunc()
-{
+// 子线程执行函数
+void EventLoopThread::threadFunc() {
+    // 在子线程中才创建EventLoop实例，这样queueInLoop才能在对应的子线程中执行回调函数
     EventLoop loop;
 
     // 用户自定义的线程初始化完成后要执行的函数
-    if (callback_)
-    {
+    if (callback_) {
         callback_(&loop);
     }
 
@@ -59,7 +55,7 @@ void EventLoopThread::threadFunc()
     }
     // 执行EventLoop的loop() 开启了底层的EPoller的poll()
     // 这个是subLoop
-    loop.loop();   
+    loop.loop();
     // loop是一个事件循环，如果往下执行说明停止了事件循环，需要关闭eventLoop
     // 此处是获取互斥锁再置loop_为空
     std::unique_lock<std::mutex> lock(mutex_);

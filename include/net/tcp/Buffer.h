@@ -98,7 +98,7 @@ public:
         writerIndex_ += len;
     }
 
-    // 返回写入的位置
+    // 返回缓冲区中可写数据的起始位置
     char *beginWrite() { return begin() + writerIndex_; }
     const char *beginWrite() const { return begin() + writerIndex_; }
 

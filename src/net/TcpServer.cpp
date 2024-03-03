@@ -32,7 +32,7 @@ TcpServer::~TcpServer() {
     for(auto &item : connections_) {
         TcpConnectionPtr conn(item.second);
         // 把原始的智能指针复位 让栈空间的TcpConnectionPtr conn指向该对象 当conn出了其作用域 即可释放智能指针指向的对象
-        item.second.reset();    
+        item.second.reset();
         // 销毁连接
         conn->getLoop()->runInLoop(std::bind(&TcpConnection::connectDestroyed, conn));
     }
