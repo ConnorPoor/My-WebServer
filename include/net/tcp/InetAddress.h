@@ -8,7 +8,7 @@
 
 class InetAddress {
 public:
-    explicit InetAddress(uint16_t port = 0);
+    explicit InetAddress(uint16_t port = 8888);
     explicit InetAddress(std::string ip, uint16_t port);
     explicit InetAddress(const sockaddr_in &addr)
         : addr_(addr)
