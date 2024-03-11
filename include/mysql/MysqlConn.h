@@ -35,10 +35,12 @@ public:
 
 private:
     void freeResult();
+    // 数据库连接指针
     MYSQL* conn_ = nullptr;
+    // 查询结果
     MYSQL_RES* result_ = nullptr;
     MYSQL_ROW row_ = nullptr;
-    // 绝对始终
+    // 绝对时钟
     std::chrono::steady_clock::time_point m_alivetime;
 };
 

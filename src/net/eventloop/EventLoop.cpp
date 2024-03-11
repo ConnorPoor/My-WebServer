@@ -72,7 +72,7 @@ void EventLoop::loop() {
     while (!quit_) {
         // 清空activeChannels_
         activeChannels_.clear();
-        // 获取
+        // 获取发生事件的channel
         pollReturnTime_ = poller_->poll(kPollTimeMs, &activeChannels_);
         for (Channel *channel : activeChannels_) {
             channel->handleEvent(pollReturnTime_);

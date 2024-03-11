@@ -15,7 +15,7 @@ include_directories (
     ${PROJECT_SOURCE_DIR}/include/logger
 )
 
-# 包含这些目录下的.cc文件
+# 包含这些目录下的.cpp文件
 aux_source_directory(${PROJECT_SOURCE_DIR}/src/base SRC_BASE)
 aux_source_directory(${PROJECT_SOURCE_DIR}/src/net SRC_NET)
 aux_source_directory(${PROJECT_SOURCE_DIR}/src/net/enentloop SRC_EVENTLOOP)
